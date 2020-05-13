@@ -1,0 +1,96 @@
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+
+}
+
+
+// app container
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+// Todo Form
+.todo-form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #828282;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 16px 0;
+  box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
+
+
+  &__header {
+    text-align: center;
+  }
+
+  &__body {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &__icon {
+      // max-height: 50px;
+      height: 90%;
+      max-height: 50px;
+      cursor: pointer;
+    }
+
+    &__input {
+      // height: 76%;
+      width: 85%;
+      border: 1px solid #828282;
+      border-radius: 5px;
+      padding: 5px;
+      font-size: 24px;
+    }
+  }
+}
+
+// Todo item
+
+.todo-wrapper {
+  margin-top: 20px;
+
+  .todo-item {
+    margin-top: 20px;
+    display: flex;
+    box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
+    border: 1px solid #828282;
+    border-radius: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+
+    &__icon {
+      max-height: 40px;
+      cursor: pointer;
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+
+  .todo-item__isCompleted {
+    background: brown;
+  }
+}
