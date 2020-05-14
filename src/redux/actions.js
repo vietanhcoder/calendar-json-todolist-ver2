@@ -23,11 +23,13 @@ export const readTodos = () => async (dispatch) => {
 };
 
 export const createTodo = (title) => async (dispatch, getState) => {
+  const date = getState().todoReducers.dateCalendar;
+  console.log("OUTPUT: createTodo -> date", date);
   try {
     const todo = {
       title,
       isCompleted: false,
-      date: "",
+      date: date,
     };
     await axios.post(BASE_URL, todo);
     dispatch({ type: ADD_TODO, payload: { todo } });
