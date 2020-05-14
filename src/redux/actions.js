@@ -22,6 +22,8 @@ export const readTodos = () => async (dispatch) => {
   }
 };
 
+// =====BEGIN  CREATING/ ADDING TODO
+
 export const createTodo = (title) => async (dispatch, getState) => {
   const date = getState().todoReducers.dateCalendar;
   console.log("OUTPUT: createTodo -> date", date);
@@ -37,7 +39,25 @@ export const createTodo = (title) => async (dispatch, getState) => {
     alert("deo create duoc");
   }
 };
+// way 2:
+// const addTodo = title => (dispatch, getState) => {
+// 	const date = getState().todoReducer.date;
+// 	const todo = {
+// 		title,
+// 		isCompleted: false,
+// 		date,
+// 	};
+// 	axios
+// 		.post(...)
+// 		.then(() => {
+// 			dispatch({
+// 				type: ADD_TODO,
+// 				payload: todo
+// 			})
+// 		})
+// }
 
+// =====END CREATING/ ADDING TODO
 export const removeTodo = (id) => async (dispatch) => {
   try {
     await axios.delete(`${BASE_URL}/${id}`);
