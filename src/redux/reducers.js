@@ -14,21 +14,18 @@ const initialState = {
 
 const reducers = (state = initialState, action) => {
   switch (action.type) {
-    // =================================
     case READ_TODOS: {
       return {
         ...state,
         todos: action.payload.data,
       };
     }
-    // =================================
     case ADD_TODO: {
       return {
         ...state,
         todos: [action.payload.todo, ...state.todos],
       };
     }
-    // =================================
     case REMOVE_TODO: {
       const { id } = action.payload;
       const removedTodos = state.todos.filter((todo) => todo.id !== id);
@@ -37,7 +34,6 @@ const reducers = (state = initialState, action) => {
         todos: removedTodos,
       };
     }
-    // =================================
     case TOGGLE_TODO: {
       const { id } = action.payload;
       const toggleTodo = state.todos.map((todo) => {
@@ -51,7 +47,6 @@ const reducers = (state = initialState, action) => {
         todos: toggleTodo,
       };
     }
-    // =================================
     case SELECT_DATE: {
       const { date } = action.payload;
       return {
