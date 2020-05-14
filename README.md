@@ -1,2 +1,1 @@
-UI > Action > redux > reducer > connect data + component
-function lien quan.
+Todo list + json-server, axios, scss, react-calendar, redux, redux-thunk, redux-devtools-extension, momentjs
