@@ -87,7 +87,7 @@ export const toggleCompletedTodo = (id) => async (dispatch, getState) => {
   }
 };
 
-export const selectedDate = (date) => ({
+export const setSelectedDate = (date) => ({
   type: SELECT_DATE,
   payload: { date },
 });

@@ -2,20 +2,20 @@ import React from "react";
 import Calendar from "react-calendar";
 import moment from "moment";
 import { connect } from "react-redux";
-import { selectedDate } from "../../redux/actions";
+import { setSelectedDate } from "../../redux/actions";
 import "./styles.scss";
 
-const CalendarSection = ({ selectedDate, todos }) => {
+const CalendarSection = ({ setSelectedDate, todos }) => {
   const _onClickDay = (date) => {
     const formatSelectDay = moment(date).format("YYYY-MM-DD");
-    selectedDate(formatSelectDay);
+    setSelectedDate(formatSelectDay);
   };
 
   const _handleSetClassDate = ({ activeStartDate, date, view }) => {
-    const todoDate = todos.filter((todo) => {
+    const todoArr = todos.filter((todo) => {
       return todo.date === moment(date).format("YYYY-MM-DD");
     });
-    return todoDate.length > 0 ? "have-todo" : "";
+    return todoArr.length > 0 ? "have-todo" : "";
   };
 
   return (
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = {
-  selectedDate,
+  setSelectedDate,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarSection);

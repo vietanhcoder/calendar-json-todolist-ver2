@@ -19,38 +19,40 @@ const Todo = ({
     readTodos();
   }, []);
 
-  const _handleCompleteIcon = (id) => {
-    toggleCompletedTodo(id);
-  };
-  const _handleRemoveIcon = (id) => {
-    removeTodo(id);
-  };
+  // const _handleCompleteIcon = (id) => {
+  //   toggleCompletedTodo(id);
+  // };
+  // const _handleRemoveIcon = (id) => {
+  //   removeTodo(id);
+  // };
   return (
     <ul className="todo-wrapper">
       {todos.length > 0 ? (
         todos.map((todo) => {
-          return todo.date === dateCalendar ? (
-            <li
-              key={todo.id}
-              className={`todo-item ${
-                todo.isCompleted ? "todo-item__isCompleted" : ""
-              }`}
-            >
-              <img
-                src={CompleteIcon}
-                alt="complete icon"
-                className="todo-item__icon"
-                onClick={() => _handleCompleteIcon(todo.id)}
-              />
-              <div className="todo-item__title">{todo.title}</div>
-              <img
-                src={RemoveIcon}
-                className="todo-item__icon"
-                alt="Remove icon"
-                onClick={() => _handleRemoveIcon(todo.id)}
-              />
-            </li>
-          ) : null;
+          return (
+            todo.date === dateCalendar && (
+              <li
+                key={todo.id}
+                className={`todo-item ${
+                  todo.isCompleted ? "todo-item__isCompleted" : ""
+                }`}
+              >
+                <img
+                  src={CompleteIcon}
+                  alt="complete icon"
+                  className="todo-item__icon"
+                  onClick={() => toggleCompletedTodo(todo.id)}
+                />
+                <div className="todo-item__title">{todo.title}</div>
+                <img
+                  src={RemoveIcon}
+                  className="todo-item__icon"
+                  alt="Remove icon"
+                  onClick={() => removeTodo(todo.id)}
+                />
+              </li>
+            )
+          );
         })
       ) : (
         <p>nothing to show</p>
@@ -60,12 +62,18 @@ const Todo = ({
 };
 
 const mapStateToProps = (state) => {
-  const {
-    todoReducers: { todos, dateCalendar },
-  } = state;
+  // way 1
+  // const {
+  //   todoReducers: { todos, dateCalendar },
+  // } = state;
+  // return {
+  //   todos,
+  //   dateCalendar,
+  // };
+  // way 2
   return {
-    todos,
-    dateCalendar,
+    todos: state.todoReducers.todos,
+    dateCalendar: state.todoReducers.dateCalendar,
   };
 };
 const mapDispatchToProps = {

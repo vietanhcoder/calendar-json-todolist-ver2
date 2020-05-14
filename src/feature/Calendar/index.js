@@ -1,2 +1,1 @@
-import CalendarSection from "./CalendarSection";
-export default CalendarSection;
+export { default } from "./CalendarSection";
