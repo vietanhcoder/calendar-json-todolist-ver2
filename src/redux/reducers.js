@@ -1,5 +1,10 @@
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, READ_TODOS } from "./types";
-
+import {
+  ADD_TODO,
+  REMOVE_TODO,
+  TOGGLE_TODO,
+  READ_TODOS,
+  SELECT_DATE,
+} from "./types";
 const initialState = {
   loading: false,
   dateCalendar: "",
@@ -46,6 +51,15 @@ const reducers = (state = initialState, action) => {
         todos: toggleTodo,
       };
     }
+    // =================================
+    case SELECT_DATE: {
+      const { date } = action.payload;
+      return {
+        ...state,
+        dateCalendar: date,
+      };
+    }
+
     default:
       return state;
   }

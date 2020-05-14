@@ -1,5 +1,11 @@
 import axios from "axios";
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, READ_TODOS } from "./types";
+import {
+  ADD_TODO,
+  REMOVE_TODO,
+  TOGGLE_TODO,
+  READ_TODOS,
+  SELECT_DATE,
+} from "./types";
 
 const BASE_URL = "http://localhost:4000/todos";
 
@@ -47,3 +53,8 @@ export const toggleCompletedTodo = (id) => async (dispatch) => {
     alert("deo toggle duoc");
   }
 };
+
+export const selectedDate = (date) => ({
+  type: SELECT_DATE,
+  payload: { date },
+});

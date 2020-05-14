@@ -8,7 +8,13 @@ import {
 import CompleteIcon from "../../../assets/icons/complete.svg";
 import RemoveIcon from "../../../assets/icons/remove.svg";
 
-const Todo = ({ readTodos, todos, removeTodo, toggleCompletedTodo }) => {
+const Todo = ({
+  readTodos,
+  todos,
+  removeTodo,
+  toggleCompletedTodo,
+  dateCalendar,
+}) => {
   useEffect(() => {
     readTodos();
   }, []);
@@ -23,7 +29,7 @@ const Todo = ({ readTodos, todos, removeTodo, toggleCompletedTodo }) => {
     <ul className="todo-wrapper">
       {todos.length > 0 ? (
         todos.map((todo) => {
-          return (
+          return todo.date === dateCalendar ? (
             <li
               key={todo.id}
               className={`todo-item ${
@@ -44,7 +50,7 @@ const Todo = ({ readTodos, todos, removeTodo, toggleCompletedTodo }) => {
                 onClick={() => _handleRemoveIcon(todo.id)}
               />
             </li>
-          );
+          ) : null;
         })
       ) : (
         <p>nothing to show</p>
@@ -55,10 +61,11 @@ const Todo = ({ readTodos, todos, removeTodo, toggleCompletedTodo }) => {
 
 const mapStateToProps = (state) => {
   const {
-    todoReducers: { todos },
+    todoReducers: { todos, dateCalendar },
   } = state;
   return {
     todos,
+    dateCalendar,
   };
 };
 const mapDispatchToProps = {
