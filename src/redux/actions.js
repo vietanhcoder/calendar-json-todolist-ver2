@@ -26,17 +26,24 @@ export const readTodos = () => async (dispatch) => {
 
 export const createTodo = (title) => async (dispatch, getState) => {
   const date = getState().todoReducers.dateCalendar;
-  console.log("OUTPUT: createTodo -> date", date);
-  try {
-    const todo = {
-      title,
-      isCompleted: false,
-      date: date,
-    };
-    await axios.post(BASE_URL, todo);
-    dispatch({ type: ADD_TODO, payload: { todo } });
-  } catch (err) {
-    alert("deo create duoc");
+  if (!date) {
+    alert("please select a date");
+  } else {
+    try {
+      const todo = {
+        title,
+        isCompleted: false,
+        date: date,
+      };
+      const res = await axios.post(BASE_URL, todo);
+      const id = res.data.id;
+      todo.id = id;
+      // must set id todo for removing and toggling
+
+      dispatch({ type: ADD_TODO, payload: { todo } });
+    } catch (err) {
+      alert("can't create a new todo");
+    }
   }
 };
 // way 2:
@@ -58,21 +65,25 @@ export const createTodo = (title) => async (dispatch, getState) => {
 // }
 
 // =====END CREATING/ ADDING TODO
-export const removeTodo = (id) => async (dispatch) => {
+export const removeTodo = (id) => async (dispatch, getState) => {
   try {
-    await axios.delete(`${BASE_URL}/${id}`);
+    const todos = getState().todoReducers.todos;
+    const todo = todos.map((todo) => todo.id === id);
+    await axios.delete(`${BASE_URL}/${id}`, todo);
     dispatch({ type: REMOVE_TODO, payload: { id } });
   } catch (err) {
-    alert("deo remove duoc");
+    alert("can't remove this item");
   }
 };
 
-export const toggleCompletedTodo = (id) => async (dispatch) => {
+export const toggleCompletedTodo = (id) => async (dispatch, getState) => {
   try {
-    await axios.patch(`${BASE_URL}/${id}`);
+    const todos = getState().todoReducers.todos;
+    const todo = todos.find((item) => item.id === id);
+    await axios.patch(`${BASE_URL}/${id}`, { isCompleted: !todo.isCompleted });
     dispatch({ type: TOGGLE_TODO, payload: { id } });
   } catch (err) {
-    alert("deo toggle duoc");
+    alert("can't toggle this item");
   }
 };
 

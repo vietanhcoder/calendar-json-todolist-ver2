@@ -6,7 +6,13 @@ import { connect } from "react-redux";
 const TodoForm = ({ createTodo }) => {
   const [title, setTitle] = useState("");
   const _handleAddTodo = () => {
-    createTodo(title);
+    if (title !== "") {
+      const newTitle = title;
+      setTitle("");
+      createTodo(newTitle);
+    } else {
+      alert("please select a date first then add a title");
+    }
   };
   const _handleOnChangeInput = (e) => {
     const { value } = e.target;
@@ -27,6 +33,7 @@ const TodoForm = ({ createTodo }) => {
           type="text"
           className="todo-form__body__input"
           onChange={_handleOnChangeInput}
+          value={title}
         />
       </div>
     </div>

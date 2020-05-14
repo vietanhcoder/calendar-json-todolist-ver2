@@ -34,6 +34,7 @@ const reducers = (state = initialState, action) => {
         todos: removedTodos,
       };
     }
+
     case TOGGLE_TODO: {
       const { id } = action.payload;
       const toggleTodo = state.todos.map((todo) => {
