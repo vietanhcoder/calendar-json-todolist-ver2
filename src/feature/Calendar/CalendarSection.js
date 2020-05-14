@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import moment from "moment";
 import { connect } from "react-redux";
 import { selectedDate } from "../../redux/actions";
+import "./styles.scss";
 
 const CalendarSection = ({ selectedDate, todos }) => {
   const _onClickDay = (date) => {
@@ -18,7 +19,7 @@ const CalendarSection = ({ selectedDate, todos }) => {
   };
 
   return (
-    <div>
+    <div className="calendar-wrapper">
       <Calendar onClickDay={_onClickDay} tileClassName={_handleSetClassDate} />
     </div>
   );

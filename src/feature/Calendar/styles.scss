@@ -1,0 +1,52 @@
+.calendar-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+
+  .react-calendar {
+    max-width: 350px;
+    border: 1px solid #828282;
+    padding: 5px;
+
+    button {
+      border: none;
+    }
+
+    .react-calendar__viewContainer {
+      text-align: center;
+      margin-top: 30px;
+
+      .react-calendar__month-view__weekdays {
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .react-calendar__month-view__days button {
+        padding: 10px 0;
+
+        &:active,
+        :focus,
+        :visited {
+          background: blue;
+        }
+      }
+
+      .have-todo {
+        background: yellow;
+
+        &:before {
+          content: " \25CF";
+          color: green;
+          font-size: 5px;
+          position: absolute;
+          margin-top: -5px;
+          margin-left: 3px;
+        }
+      }
+    }
+
+  }
+
+}
